@@ -12,7 +12,7 @@ class ReservationController extends Controller
 {
     public function store(Request $request): JsonResponse
     {
-        // 1. Validar os dados recebidos.
+
         $data = $request->validate([
             'machine_id' => ['required', 'integer', 'exists:machines,id'],
             'client_id' => ['required', 'integer', 'exists:clients,id'],
@@ -123,7 +123,7 @@ class ReservationController extends Controller
                 }
             }
 
-            if (!$allowed) {
+            if (! $allowed) {
                 return response()->json([
                     'message' => 'Mudança de status não permitida para esta reserva neste momento.',
                 ], 422);
